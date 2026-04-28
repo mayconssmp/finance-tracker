@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transação - controle de gastos</title>
+  <link rel="stylesheet" href="transaction.css">
+  <link rel="stylesheet" href="../../shared/global.css">
+</head>
+<body>
+  <div class="transaction-wrap">
+    <header>
+      <button type="button" class="clear" onclick="backToHome()">← voltar</button>
+      <span class="page-title">nova transação</span>
+    </header>
+    <main>
+      <form id="transaction-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="type">tipo</label>
+            <select name="type" id="type">
+              <option value="expense">despesa</option>
+              <option value="income">receita</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="currency">moeda</label>
+            <select name="currency" id="currency">
+              <option value="BRL">BRL</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="date">data *</label>
+            <input type="date" name="date" id="date" onchange="onChangeDate()">
+            <div class="error" id="error-required-date">campo obrigatório</div>
+          </div>
+          <div class="form-field">
+            <label for="value">valor *</label>
+            <input type="number" name="value" id="value" placeholder="0,00" min="0" step="0.01"
+              onchange="onChangeValue()"
+              oninput="onChangeValue()"
+              onkeydown="if(['e','E','+','-'].includes(event.key)) event.preventDefault()">
+            <div class="error" id="error-required-value">campo obrigatório</div>
+            <div class="error" id="error-invalid-value">valor inválido</div>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="transactionType">categoria *</label>
+          <select name="transactionType" id="transactionType" onchange="onChangeTransactionType()">
+            <option value="">selecione uma categoria</option>
+            <option>Moradia</option>
+            <option>Contas</option>
+            <option>Assinaturas</option>
+            <option>Transporte</option>
+            <option>Alimentação</option>
+            <option>Lazer</option>
+            <option>Saúde</option>
+            <option>Outros</option>
+          </select>
+          <div class="error" id="error-required-transactionType">campo obrigatório</div>
+        </div>
+        <div class="form-field">
+          <label for="description">descrição</label>
+          <input type="text" name="description" id="description" placeholder="opcional">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="outline" onclick="backToHome()">cancelar</button>
+          <button type="button" class="solid" id="save-button" disabled onclick="saveTransaction()">salvar</button>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore-compat.js"></script>
+<script src="../../shared/services/firebase-init.js"></script>
+<script src="../../shared/utils/validations.js"></script>
+<script src="../../shared/utils/loading.js"></script>
+<script src="../../shared/utils/auth-guard.js"></script>
+<script src="../../shared/services/transaction.service.js"></script>
+<script src="transaction.js"></script>
+</html>

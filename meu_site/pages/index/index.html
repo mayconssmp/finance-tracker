@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Controle de gastos</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="../../shared/global.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-left">
+      <div class="login-form-wrap">
+        <h1 class="form-title">faça seu <span class="green-dot">login.</span></h1>
+        <div class="form-field">
+          <label for="email">email</label>
+          <input type="email" name="email" id="email"
+            placeholder="seu@email.com"
+            onchange="onChangeEmail()">
+          <div class="error" id="email-required-error">email é obrigatório</div>
+          <div class="error" id="email-invalid-error">email inválido</div>
+        </div>
+        <div class="form-field">
+          <label for="password">senha</label>
+          <input type="password" name="password" id="password"
+            placeholder="sua senha"
+            oninput="onChangePassword()">
+          <div class="error" id="password-required-error">senha é obrigatória</div>
+        </div>
+        <button type="button" class="clear small-btn" id="recover-password-button" disabled onclick="recoverPassword()">esqueci minha senha</button>
+        <button type="button" class="solid" id="login-button" disabled onclick="login()">entrar</button>
+        <button type="button" class="clear link-btn" onclick="register()">ainda não tenho uma conta</button>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-right-content">
+        <div class="brand">💰 controle de gastos</div>
+        <h2 class="right-title">gerencie suas finanças com inteligência.</h2>
+        <div class="features">
+          <div class="feature-item">
+            <span class="feature-icon">✦</span>
+            <span>registre receitas e despesas</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✦</span>
+            <span>acompanhe seu saldo em tempo real</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✦</span>
+            <span>histórico completo de transações</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-auth-compat.js"></script>
+<script src="../../shared/services/firebase-init.js"></script>
+<script src="../../shared/utils/validations.js"></script>
+<script src="../../shared/utils/loading.js"></script>
+<script src="index.js"></script>

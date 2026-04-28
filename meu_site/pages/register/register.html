@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - controle de gastos</title>
+  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet" href="../../shared/global.css">
+</head>
+<body>
+  <div class="register-wrap">
+    <div class="register-left">
+      <div class="register-form-wrap">
+        <h1 class="form-title">crie sua <span class="green-dot">conta.</span></h1>
+        <p class="form-sub">comece a controlar suas finanças agora mesmo.</p>
+        <div class="form-field">
+          <label for="email">email</label>
+          <input type="email" id="email" placeholder="seu@email.com" onchange="onChangeEmail()">
+          <div class="error" id="email-required-error">email é obrigatório</div>
+          <div class="error" id="email-invalid-error">email inválido</div>
+        </div>
+        <div class="form-field">
+          <label for="password">senha</label>
+          <input type="password" id="password" placeholder="mínimo 6 caracteres" onchange="onChangePassword()">
+          <div class="error" id="password-required-error">senha é obrigatória</div>
+          <div class="error" id="password-min-length-error">senha deve ter pelo menos 6 caracteres</div>
+        </div>
+        <div class="form-field">
+          <label for="confirmPassword">confirmar senha</label>
+          <input type="password" id="confirmPassword" placeholder="repita a senha" onchange="onChangeConfirmPassword()">
+          <div class="error" id="password-doesnt-match-error">senhas não conferem</div>
+        </div>
+        <button type="button" class="solid" id="register-button" disabled onclick="register()">criar conta</button>
+        <button type="button" class="clear link-btn" onclick="login()">já tenho uma conta</button>
+      </div>
+    </div>
+    <div class="register-right">
+      <div class="register-right-content">
+        <div class="brand">💰 controle de gastos</div>
+        <h2 class="right-title">comece sua jornada financeira.</h2>
+        <div class="features">
+          <div class="feature-item">
+            <span class="feature-icon">✦</span>
+            <span>cadastro rápido e gratuito</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✦</span>
+            <span>seus dados sempre seguros</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✦</span>
+            <span>acesse de qualquer dispositivo</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✦</span>
+            <span>controle total das suas finanças</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-auth-compat.js"></script>
+<script src="../../shared/services/firebase-init.js"></script>
+<script src="../../shared/utils/validations.js"></script>
+<script src="../../shared/utils/loading.js"></script>
+<script src="register.js"></script>
+</html>

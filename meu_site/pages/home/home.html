@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>home - controle de gastos</title>
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="../../shared/global.css">
+</head>
+<body>
+  <div class="home-wrap">
+    <header>
+      <span class="app-name">controle de gastos</span>
+      <button type="button" class="outline" onclick="logout()">logout</button>
+    </header>
+    <div class="home-content">
+      <div class="balance-card">
+        <div class="balance-label">saldo atual</div>
+        <div class="balance-value" id="summary-total">R$ 0,00</div>
+        <div class="balance-row">
+          <div class="balance-item">
+            <div class="balance-item-label">
+              <span class="dot dot-green"></span> receitas
+            </div>
+            <div class="balance-item-value" id="summary-income">R$ 0,00</div>
+          </div>
+          <div class="balance-item">
+            <div class="balance-item-label">
+              <span class="dot dot-red"></span> despesas
+            </div>
+            <div class="balance-item-value" id="summary-expense">R$ 0,00</div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label">saldo ao longo do tempo</div>
+          <canvas id="line-chart"></canvas>
+        </div>
+      </div>
+      <div class="transactions-wrap">
+        <div class="section-label">transações</div>
+        <ol id="transactions"></ol>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="fab fixed bottom right" onclick="newTransaction()">+</button>
+</body>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore-compat.js"></script>
+<script src="../../shared/services/firebase-init.js"></script>
+<script src="../../shared/utils/validations.js"></script>
+<script src="../../shared/utils/loading.js"></script>
+<script src="../../shared/utils/auth-guard.js"></script>
+<script src="../../shared/services/transaction.service.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="home.js"></script>
+</html>
