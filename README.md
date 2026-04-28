@@ -23,23 +23,25 @@ Personal finance tracker built with HTML, CSS, JavaScript and Firebase.
 
 ## 📁 Project Structure
 
+```
 meu_site/
 ├── pages/
-│ ├── home/
-│ ├── index/
-│ ├── register/
-│ └── transactions/
+│   ├── home/
+│   ├── index/
+│   ├── register/
+│   └── transactions/
 └── shared/
-├── services/
-│ ├── firebase-init.js
-│ └── transaction.service.js
-└── utils/
-├── auth-guard.js
-├── loading.js
-└── validations.js
+    ├── services/
+    │   ├── firebase-init.js
+    │   └── transaction.service.js
+    └── utils/
+        ├── auth-guard.js
+        ├── loading.js
+        └── validations.js
+```
 
 ## 🚀 How to run
 
 1. Clone the repository
-   git clone https://github.com/seu-usuario/expense-tracker.git
+   git clone https://github.com/mayconssmp/finance-tracker.git
 2. Open `pages/index/index.html` in your browser or use Live Server
