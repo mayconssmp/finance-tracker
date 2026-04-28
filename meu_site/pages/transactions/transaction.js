@@ -1,23 +1,20 @@
 const form = {
-  type: document.getElementById('type'),
-  date: document.getElementById('date'),
-  currency: document.getElementById('currency'),
-  value: document.getElementById('value'),
-  transactionType: document.getElementById('transactionType'),
-  description: document.getElementById('description'),
-  error: document.getElementById('error'),
-  dateError: document.getElementById('error-required-date'),
-  valueError: document.getElementById('error-required-value'),
-  valueInvalidError: document.getElementById('error-invalid-value'),
+  type:                 document.getElementById('type'),
+  date:                 document.getElementById('date'),
+  currency:             document.getElementById('currency'),
+  value:                document.getElementById('value'),
+  transactionType:      document.getElementById('transactionType'),
+  description:          document.getElementById('description'),
+  dateError:            document.getElementById('error-required-date'),
+  valueError:           document.getElementById('error-required-value'),
+  valueInvalidError:    document.getElementById('error-invalid-value'),
   transactionTypeError: document.getElementById('error-required-transactionType'),
-  saveButton: document.getElementById('save-button')
+  saveButton:           document.getElementById('save-button')
 };
 
 // carrega transação se for edição
 firebase.auth().onAuthStateChanged(user => {
-  if (user && !isNewTransaction()) {
-    findTransactionByUid(getTransactionUid());
-  }
+  if (user && !isNewTransaction()) findTransactionByUid(getTransactionUid());
 });
 
 // navegação
@@ -56,13 +53,15 @@ function findTransactionByUid(uid) {
 
 // preenche os campos com dados da transação
 function fillTransactionScreen(transaction) {
-  form.type.value = transaction.type;
+  form.type.value            = transaction.type;
+  form.currency.value        = transaction.money.currency;
+  form.value.value           = transaction.money.value;
+  form.transactionType.value = transaction.transactionType;
+  form.description.value     = transaction.description || '';
+
   const date = transaction.date.toDate ? transaction.date.toDate() : new Date(transaction.date);
   form.date.value = date.toISOString().split('T')[0];
-  form.currency.value = transaction.money.currency;
-  form.value.value = transaction.money.value;
-  form.transactionType.value = transaction.transactionType;
-  form.description.value = transaction.description || '';
+
   toggleSaveButtonDisabled();
 }
 
@@ -74,7 +73,7 @@ function onChangeDate() {
 
 function onChangeValue() {
   const value = parseFloat(form.value.value);
-  form.valueError.style.display = !form.value.value ? 'block' : 'none';
+  form.valueError.style.display        = !form.value.value ? 'block' : 'none';
   form.valueInvalidError.style.display = form.value.value && value <= 0 ? 'block' : 'none';
   toggleSaveButtonDisabled();
 }
@@ -121,8 +120,7 @@ function save(transaction) {
 }
 
 function update(transaction) {
-  const uid = getTransactionUid();
-  transactionService.update(uid, transaction)
+  transactionService.update(transaction)
     .then(() => {
       hideLoading();
       window.location.href = "/meu_site/pages/home/home.html";
@@ -135,14 +133,15 @@ function update(transaction) {
 
 function createTransaction() {
   return {
-    type: form.type.value,
-    date: form.date.value,
+    uid:             isNewTransaction() ? null : getTransactionUid(),
+    type:            form.type.value,
+    date:            form.date.value,
     money: {
       currency: form.currency.value,
-      value: parseFloat(form.value.value),
+      value:    parseFloat(form.value.value),
     },
     transactionType: form.transactionType.value,
-    description: form.description.value,
+    description:     form.description.value || null,
     user: {
       uid: firebase.auth().currentUser.uid,
     }
